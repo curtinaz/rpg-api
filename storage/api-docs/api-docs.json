@@ -4,6 +4,11 @@
         "title": "RPG System",
         "version": "1.0.0"
     },
+    "servers": [
+        {
+            "url": "/rpg-api/public"
+        }
+    ],
     "paths": {
         "/api/users/login": {
             "post": {
