@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\ValidationException;
 
 class UsersController extends Controller
 {
@@ -56,9 +58,15 @@ class UsersController extends Controller
             ], 403);
         }
 
-        if (User::where('name', $req->username)->where('password', $req->password)) {
-            return response(["allright"], 200);
+        $user = User::where('email', $req->email)->first();
+
+        if (!$user || !Hash::check($req->password, $user->password)) {
+            throw ValidationException::withMessages([
+                'email' => ['The provided credentials are incorrect.'],
+            ]);
         }
+
+        return $user->createToken($req->device_name)->plainTextToken;
     }
 
     /**
