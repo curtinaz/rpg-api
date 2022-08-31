@@ -58,7 +58,7 @@ class UsersController extends Controller
             ], 403);
         }
 
-        $user = User::where('name', $req->name)->first();
+        $user = User::where('name', $req->username)->first();
 
         if (!$user || !password_verify($req->password, $user->password)) {
             return response([
