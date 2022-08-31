@@ -58,7 +58,7 @@ class UsersController extends Controller
             ], 403);
         }
 
-        $user = User::where('email', $req->email)->first();
+        $user = User::where('name', $req->name)->first();
 
         if (!$user || !Hash::check($req->password, $user->password)) {
             return response([
