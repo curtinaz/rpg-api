@@ -46,7 +46,7 @@ class UsersController extends Controller
     {
 
         // Caso o usuário não preencha todos os campos
-        if (!$req->name || !$req->password) {
+        if (!$req->username || !$req->password) {
             return response([
                 "error" => [
                     "message" => "All the fields are required.",
@@ -56,7 +56,7 @@ class UsersController extends Controller
             ], 403);
         }
 
-        if (User::where('name', $req->name)->where('password', $req->password)) {
+        if (User::where('name', $req->username)->where('password', $req->password)) {
             return response(["allright"], 200);
         }
     }
@@ -104,7 +104,7 @@ class UsersController extends Controller
     {
 
         // Caso o usuário não preencha todos os campos
-        if (!$req->name || !$req->email || !$req->password) {
+        if (!$req->username || !$req->email || !$req->password) {
             return response([
                 "error" => [
                     "message" => "All the fields are required.",
@@ -114,12 +114,12 @@ class UsersController extends Controller
             ], 403);
         }
 
-        if (User::where('name', $req->name)->orWhere('email', $req->email)->first()) {
+        if (User::where('name', $req->username)->orWhere('email', $req->email)->first()) {
             return response(["error", 400]);
         }
 
         User::create([
-            "name" => $req->name,
+            "name" => $req->username,
             "email" => $req->email,
             "password" => password_hash($req->password, PASSWORD_BCRYPT)
         ]);
