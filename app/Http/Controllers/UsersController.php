@@ -67,7 +67,7 @@ class UsersController extends Controller
         }
 
         return response([
-            "token" => $user->createToken($req->device_name)->plainTextToken
+            "token" => $user->createToken('web')->plainTextToken
         ], 200);
     }
 
