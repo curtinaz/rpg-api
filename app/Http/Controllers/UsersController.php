@@ -45,6 +45,17 @@ class UsersController extends Controller
     public function login(Request $req)
     {
 
+        // Caso o usuário não preencha todos os campos
+        if (!$req->name || !$req->password) {
+            return response([
+                "error" => [
+                    "message" => "All the fields are required.",
+                    "status" => 403
+                ],
+                "success" => false
+            ], 403);
+        }
+
         if (User::where('name', $req->name)->where('password', $req->password)) {
             return response(["allright"], 200);
         }
