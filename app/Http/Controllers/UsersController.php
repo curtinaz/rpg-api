@@ -60,7 +60,7 @@ class UsersController extends Controller
 
         $user = User::where('name', $req->name)->first();
 
-        if (!$user || !Hash::check($req->password, $user->password)) {
+        if (!$user || !password_verify($req->password, $user->password)) {
             return response([
                 "success" => false
             ], 200);
