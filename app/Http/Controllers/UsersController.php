@@ -63,7 +63,7 @@ class UsersController extends Controller
         if (!$user || !password_verify($req->password, $user->password)) {
             return response([
                 "success" => false
-            ], 200);
+            ], 400);
         }
 
         return response([
