@@ -49,6 +49,50 @@
                     }
                 }
             }
+        },
+        "/api/users/register": {
+            "post": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "User Register",
+                "operationId": "047a1334207ff7dd0cfcf0351a72ac8d",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "": {
+                                        "properties": {
+                                            "email": {
+                                                "type": "string"
+                                            },
+                                            "username": {
+                                                "type": "string"
+                                            },
+                                            "password": {
+                                                "type": "string"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "email": "john@doe.com",
+                                    "username": "johndoe",
+                                    "password": "johnbatista"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
         }
     },
     "components": {

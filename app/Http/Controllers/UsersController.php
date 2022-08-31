@@ -61,6 +61,45 @@ class UsersController extends Controller
         }
     }
 
+    /**
+     * @OA\Post(
+     *      path="/api/users/register",
+     *      summary="User Register",
+     *      tags={"Users"},
+     *      @OA\Response(
+     *          response=200,
+     *          description="Success",
+     *      ),
+     *      @OA\RequestBody(
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(
+     *                      type="object",
+     *                      @OA\Property(
+     *                          property="email",
+     *                          type="string"
+     *                      ),
+     *                      @OA\Property(
+     *                          property="username",
+     *                          type="string"
+     *                      ),
+     *                      @OA\Property(
+     *                          property="password",
+     *                          type="string"
+     *                      )
+     *                 ),
+     *                 example={
+     *                     "email":"john@doe.com",
+     *                     "username":"johndoe",
+     *                     "password":"johnbatista"
+     *                }
+     *             )
+     *         )
+     *      ),
+     * ),
+     */
+
     public function register(Request $req)
     {
 
