@@ -66,7 +66,9 @@ class UsersController extends Controller
             ]);
         }
 
-        return $user->createToken($req->device_name)->plainTextToken;
+        return response([
+            "token" => $user->createToken($req->device_name)->plainTextToken
+        ], 200);
     }
 
     /**
