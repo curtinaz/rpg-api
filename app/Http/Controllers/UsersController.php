@@ -49,4 +49,31 @@ class UsersController extends Controller
             return response(["allright"], 200);
         }
     }
+
+    public function register(Request $req)
+    {
+
+        // Caso o usuário não preencha todos os campos
+        if (!$req->name || !$req->email || !$req->password) {
+            return response([
+                "error" => [
+                    "message" => "All the fields are required.",
+                    "status" => 403
+                ],
+                "success" => false
+            ], 403);
+        }
+
+        if (User::where('name', $req->name)->orWhere('email', $req->email)->first()) {
+            return response(["error", 400]);
+        }
+
+        User::create([
+            "name" => $req->name,
+            "email" => $req->email,
+            "password" => password_hash($req->password, PASSWORD_BCRYPT)
+        ]);
+
+        return response(["allright"], 200);
+    }
 }
