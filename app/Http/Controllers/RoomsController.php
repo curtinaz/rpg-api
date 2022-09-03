@@ -23,4 +23,20 @@ class RoomsController extends Controller
     {
         return Room::all();
     }
+
+    public function create(Request $req) {
+        if(!$req->name || !$req->max_players) {
+            return response([
+                "error" => "all fields must be filled"
+            ], 200);
+        }
+
+        $room = Room::create([
+            "name" => $req->name,
+            "max_players" => $req->max_players,
+            "password" => $req->password
+        ]);
+
+        return response($room, 200);
+    }
 }
