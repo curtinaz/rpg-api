@@ -10,6 +10,20 @@
         }
     ],
     "paths": {
+        "/api/rooms": {
+            "get": {
+                "tags": [
+                    "Rooms"
+                ],
+                "summary": "Retrieve all rooms",
+                "operationId": "5b566a53cf7cd29b576c5f2571e5c2ee",
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        },
         "/api/users/login": {
             "post": {
                 "tags": [
