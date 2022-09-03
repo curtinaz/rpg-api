@@ -24,8 +24,48 @@ class RoomsController extends Controller
         return Room::all();
     }
 
-    public function create(Request $req) {
-        if(!$req->name || !$req->max_players) {
+
+    /**
+     * @OA\Post(
+     *      path="/api/rooms",
+     *      summary="Create a room",
+     *      tags={"Rooms"},
+     *      @OA\Response(
+     *          response=200,
+     *          description="Success",
+     *      ),
+     *      @OA\RequestBody(
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(
+     *                      type="object",
+     *                      @OA\Property(
+     *                          property="name",
+     *                          type="string"
+     *                      ),
+     *                      @OA\Property(
+     *                          property="max_players",
+     *                          type="int32"
+     *                      ),
+     *                      @OA\Property(
+     *                          property="password",
+     *                          type="string"
+     *                      )
+     *                 ),
+     *                 example={
+     *                     "name": "Room's name",
+     *                     "max_players": 4,
+     *                     "password": "roomspassword"
+     *                }
+     *             )
+     *         )
+     *      ),
+     * ),
+     */
+    public function create(Request $req)
+    {
+        if (!$req->name || !$req->max_players) {
             return response([
                 "error" => "all fields must be filled"
             ], 200);
