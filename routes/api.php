@@ -12,3 +12,4 @@ Route::post('users/register', [UsersController::class, 'register']);
 
 // Rooms
 Route::get('rooms', [RoomsController::class, 'index']);
+Route::post('rooms', [RoomsController::class, 'create'])->middleware('auth:sanctum');
